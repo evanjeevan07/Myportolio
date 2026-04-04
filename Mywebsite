@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EVS Technology - Portfolio of EV Sanjeevan, a Full-Stack Developer building robust, scalable, and intuitive web applications.">
+    <meta name="theme-color" content="#5D3FD3">
+    <title>EVS Technology</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#5D3FD3', // Your main purple
+                        secondary: '#8B5CF6' // Lighter purple for gradients
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Hide Scrollbar */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* 1. Animated Logo (Green Removed, Changed to Purple/Violet Gradient) */
+        .animated-logo span { 
+            font-weight: 500; 
+            background: linear-gradient(90deg, #8B5CF6, #5D3FD3, #8B5CF6);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shine-logo 5s linear infinite; 
+        }
+        @keyframes shine-logo { to { background-position: 200% center; } }
+
+        /* 2. Background Floating Blur */
+        .hero-bg-blur { animation: float-bg 10s infinite alternate ease-in-out; }
+        @keyframes float-bg {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(40px) scale(1.1); }
+        }
+
+        /* 3. Button Shimmer Effect (Used in new Premium designs) */
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        /* 4. Double Circle Shape for Cards (Green Removed, Changed to Purple) */
+        .double-circle-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .double-circle-card::before, .double-circle-card::after {
+            content: ''; position: absolute; border-radius: 50%; z-index: -1; transition: all 0.6s ease;
+        }
+        .double-circle-card::before {
+            width: 150px; height: 150px; background: rgba(93, 63, 211, 0.05); top: -50px; right: -50px;
+        }
+        .double-circle-card::after {
+            width: 100px; height: 100px; background: rgba(139, 92, 246, 0.05); bottom: -30px; left: -30px;
+        }
+        .double-circle-card:hover::before, .double-circle-card:hover::after {
+            transform: scale(1.5); opacity: 0.5;
+        }
+        .dark .double-circle-card::before { background: rgba(167, 139, 250, 0.08); }
+        .dark .double-circle-card::after { background: rgba(139, 92, 246, 0.08); }
+
+        /* 5. Corner Cut-out Shape for Old Project Cards */
+        .corner-cut-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .corner-cut-card::after {
+            content: ''; position: absolute; top: -25px; right: -25px; width: 50px; height: 50px;
+            background-color: #f9fafb;
+            border-radius: 50%; z-index: 20;
+            box-shadow: inset 2px -2px 5px rgba(0,0,0,0.08);
+            transition: background-color 0.3s ease;
+        }
+        .dark .corner-cut-card::after {
+            background-color: #1f2937;
+            box-shadow: inset 2px -2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* 6. Uiverse.io Animated Button (Matches Purple Theme perfectly) */
+        .button {
+          --h-button: 48px;
+          --round: 0.75rem;
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          width: 100%;
+          margin-top: 15px;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          transition: all 0.25s ease;
+          background: radial-gradient(65.28% 65.28% at 50% 100%, rgba(139, 92, 246, 0.8) 0%, rgba(139, 92, 246, 0) 100%), linear-gradient(0deg, #5D3FD3, #5D3FD3);
+          border-radius: var(--round); border: none; outline: none; padding: 12px 18px;
+        }
+        .button::before, .button::after { content: ""; position: absolute; inset: var(--space); transition: all 0.5s ease-in-out; border-radius: calc(var(--round) - var(--space)); z-index: 0; }
+        .button::before { --space: 1px; background: linear-gradient(177.95deg, rgba(255, 255, 255, 0.19) 0%, rgba(255, 255, 255, 0) 100%); }
+        .button::after { --space: 2px; background: radial-gradient(65.28% 65.28% at 50% 100%, rgba(139, 92, 246, 0.8) 0%, rgba(139, 92, 246, 0) 100%), linear-gradient(0deg, #5D3FD3, #5D3FD3); }
+        .button:active { transform: scale(0.95); }
+        
+        .fold { z-index: 1; position: absolute; top: 0; right: 0; height: 1rem; width: 1rem; display: inline-block; transition: all 0.5s ease-in-out; background: radial-gradient(100% 75% at 55%, rgba(139, 92, 246, 0.8) 0%, rgba(139, 92, 246, 0) 100%); box-shadow: 0 0 3px black; border-bottom-left-radius: 0.5rem; border-top-right-radius: var(--round); }
+        .fold::after { content: ""; position: absolute; top: 0; right: 0; width: 150%; height: 150%; transform: rotate(45deg) translateX(0%) translateY(-18px); background-color: #ffffff; pointer-events: none; }
+        .button:hover .fold { margin-top: -1rem; margin-right: -1rem; }
+
+        .points_wrapper { overflow: hidden; width: 100%; height: 100%; pointer-events: none; position: absolute; z-index: 1; }
+        .points_wrapper .point { bottom: -10px; position: absolute; animation: floating-points infinite ease-in-out; pointer-events: none; width: 2px; height: 2px; background-color: #fff; border-radius: 9999px; }
+        @keyframes floating-points { 0% { transform: translateY(0); } 85% { opacity: 0; } 100% { transform: translateY(-55px); opacity: 0; } }
+        .points_wrapper .point:nth-child(1) { left: 10%; opacity: 1; animation-duration: 2.35s; animation-delay: 0.2s; }
+        .points_wrapper .point:nth-child(2) { left: 30%; opacity: 0.7; animation-duration: 2.5s; animation-delay: 0.5s; }
+        .points_wrapper .point:nth-child(3) { left: 25%; opacity: 0.8; animation-duration: 2.2s; animation-delay: 0.1s; }
+        .points_wrapper .point:nth-child(4) { left: 44%; opacity: 0.6; animation-duration: 2.05s; }
+        .points_wrapper .point:nth-child(5) { left: 50%; opacity: 1; animation-duration: 1.9s; }
+        .points_wrapper .point:nth-child(6) { left: 75%; opacity: 0.5; animation-duration: 1.5s; animation-delay: 1.5s; }
+        .points_wrapper .point:nth-child(7) { left: 88%; opacity: 0.9; animation-duration: 2.2s; animation-delay: 0.2s; }
+        .points_wrapper .point:nth-child(8) { left: 58%; opacity: 0.8; animation-duration: 2.25s; animation-delay: 0.2s; }
+        .points_wrapper .point:nth-child(9) { left: 98%; opacity: 0.6; animation-duration: 2.6s; animation-delay: 0.1s; }
+        .points_wrapper .point:nth-child(10) { left: 65%; opacity: 1; animation-duration: 2.5s; animation-delay: 0.2s; }
+
+        .inner { z-index: 2; gap: 6px; position: relative; width: 100%; color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; line-height: 1.5; transition: color 0.2s ease-in-out; }
+        .inner svg.icon { width: 18px; height: 18px; transition: fill 0.1s linear; }
+        .button:focus svg.icon { fill: white; }
+        .button:hover svg.icon { fill: transparent; animation: dasharray 1s linear forwards, filled 0.1s linear forwards 0.95s; }
+        @keyframes dasharray { from { stroke-dasharray: 0 0 0 0; } to { stroke-dasharray: 68 68 0 0; } }
+        @keyframes filled { to { fill: white; } }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white antialiased transition-colors duration-300">
+
+<nav class="fixed top-0 left-0 w-full border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 transition-colors duration-300">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between py-5">
+            
+            <a href="#" class="animated-logo flex items-center gap-2 text-3xl font-[200] tracking-tighter text-gray-900 dark:text-white transition-colors">
+                EVS <span>Portfolio</span>
+            </a>
+            
+            <div class="flex items-center gap-4 lg:hidden">
+                <button id="theme-toggle-mobile" type="button" class="relative inline-flex items-center justify-center w-12 h-12 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none rounded-lg transition-colors overflow-hidden">
+                    <svg class="absolute w-6 h-6 transition-all duration-500 ease-in-out rotate-0 scale-100 dark:-rotate-90 dark:scale-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <svg class="absolute w-6 h-6 transition-all duration-500 ease-in-out rotate-90 scale-0 dark:rotate-0 dark:scale-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+                <button id="menu-btn" type="button" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-10" id="navbar-menu">
+                <a href="#home" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">Home</a>
+                <a href="#expertise" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">My Expertise</a>
+                <a href="#about" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">About Me</a>
+                <a href="#projects" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">Projects</a>
+                <a href="#upcoming-projects" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">Upcoming</a>
+                <a href="#contact" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors transform hover:-translate-y-0.5">Contact</a>
+
+                <button id="theme-toggle" type="button" class="relative inline-flex items-center justify-center w-12 h-12 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none rounded-lg transition-colors ml-auto overflow-hidden">
+                    <svg class="absolute w-6 h-6 transition-all duration-500 ease-in-out rotate-0 scale-100 dark:-rotate-90 dark:scale-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <svg class="absolute w-6 h-6 transition-all duration-500 ease-in-out rotate-90 scale-0 dark:rotate-0 dark:scale-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="hidden lg:hidden" id="mobile-menu-dropdown">
+            <div class="flex flex-col gap-5 bg-white dark:bg-gray-900 px-6 py-6 border-t border-gray-100 dark:border-gray-800 transition-colors -mx-6 shadow-md">
+                 <a href="#home" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Home</a>
+                 <a href="#expertise" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">My Expertise</a>
+                 <a href="#about" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">About Me</a>
+                 <a href="#projects" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Projects</a>
+                 <a href="#upcoming-projects" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Upcoming</a>
+                 <a href="#contact" class="block text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="relative w-full pt-36 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300 flex items-center justify-center min-h-[90vh]">
+    
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTU2LCAxNjMsIDE3NSwgMC4yKSIvPjwvc3ZnPg==')] dark:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoNzUsIDg1LCA5OSwgMC4zKSIvPjwvc3ZnPg==')] z-0 [mask-image:linear-gradient(to_bottom,white_20%,transparent_100%)]"></div>
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-40 dark:opacity-20 pointer-events-none transition-opacity">
+        <div class="hero-bg-blur absolute top-[-5%] left-[15%] w-[30%] h-[40%] rounded-full bg-gradient-to-r from-[#5D3FD3] to-[#8B5CF6] blur-[120px]"></div>
+        <div class="hero-bg-blur absolute top-[20%] right-[10%] w-[35%] h-[45%] rounded-full bg-gradient-to-l from-purple-400 to-[#5D3FD3] blur-[120px]" style="animation-delay: 2s;"></div>
+    </div>
+
+    <div class="container mx-auto px-4 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-sm mb-10 transform hover:-translate-y-1 transition-transform cursor-default">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <span class="text-gray-600 dark:text-gray-300 text-xs font-semibold tracking-wide">Available for new projects</span>
+        </div>
+
+        <h1 class="text-[3.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-[100] text-gray-900 dark:text-white tracking-tighter mb-6 leading-[1.1] transition-colors">
+            Code. Create. <span class="font-[300]">Innovate.</span> <br />
+            <span class="font-[500] text-transparent bg-clip-text bg-gradient-to-r from-[#5D3FD3] via-purple-500 to-[#8B5CF6] drop-shadow-sm">
+                Full-Stack Developer
+            </span>
+        </h1>
+
+        <p class="text-lg md:text-xl font-light text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed transition-colors">
+            Building robust, scalable, and intuitive web applications from the front-end to the back-end. Let's turn your ideas into reality.
+        </p>
+
+<div class="flex justify-center items-center">
+    
+    <a href="YOUR_DRIVE_LINK_HERE" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto relative group/btn py-4 px-10 rounded-2xl bg-gradient-to-r from-[#8B5CF6] to-[#5D3FD3] text-white font-medium text-lg shadow-[0_8px_25px_rgba(93,63,211,0.35)] hover:shadow-[0_15px_35px_rgba(93,63,211,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden inline-block">
+        <span class="relative z-10 flex items-center justify-center gap-3">
+            Download Resume 
+            <i class="fa-solid fa-file-pdf text-2xl transition-transform group-hover/btn:scale-110"></i>
+        </span>
+        
+        <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover/btn:animate-[shimmer_1.5s_infinite] z-0"></div>
+    </a>
+    
+</div>
+
+
+    </div>
+</section>
+
+<section class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300" id="expertise">
+    
+    <div class="absolute top-1/3 left-0 w-[40%] h-[50%] bg-[#5D3FD3] opacity-[0.03] dark:opacity-[0.05] blur-[150px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 right-0 w-[30%] h-[40%] bg-purple-500 opacity-[0.03] dark:opacity-[0.05] blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 border border-[#5D3FD3]/20 mb-6">
+                <span class="text-[#5D3FD3] dark:text-purple-300 text-[10px] font-bold uppercase tracking-widest">My Expertise</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-[300] text-gray-900 dark:text-white mb-4 transition-colors">Full Stack Development</h2>
+            <p class="text-gray-500 dark:text-gray-400 font-light text-lg transition-colors italic">"Building seamless user experiences backed by robust, scalable systems."</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-laptop-code text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">Frontend Dev</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10">Crafting responsive, interactive, and highly optimized user interfaces using modern web technologies.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10">
+                    <ul class="grid grid-cols-2 gap-y-4 gap-x-2">
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-html5 text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> HTML5
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-css3-alt text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> CSS3
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-js text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> JavaScript
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-react text-lg text-gray-400 group-hover/item:text-[#5D3FD3] animate-[spin_4s_linear_infinite] transition-colors"></i> React.js
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-bootstrap text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Bootstrap
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-server text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">Backend Arch.</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10">Building robust RESTful APIs, securing server-side logic, and architecting scalable backend applications.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10">
+                    <ul class="grid grid-cols-2 gap-y-4 gap-x-2">
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-java text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Java
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-solid fa-leaf text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Spring Boot
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-node-js text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Node.js
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-python text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Python
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-database text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">Databases & Tools</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10">Managing data efficiently, ensuring high availability, and utilizing tools for smooth workflows.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10">
+                    <ul class="grid grid-cols-2 gap-y-4 gap-x-2">
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-solid fa-database text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> MySQL
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-solid fa-leaf text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> MongoDB
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-git-alt text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> Git
+                        </li>
+                        <li class="flex items-center gap-2.5 text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors cursor-default group/item">
+                            <i class="fa-brands fa-github text-lg text-gray-400 group-hover/item:text-[#5D3FD3] transition-colors"></i> GitHub
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[80%] bg-[#5D3FD3] opacity-[0.02] dark:opacity-[0.05] blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="max-w-6xl mx-auto bg-gray-50/50 dark:bg-gray-800/30 backdrop-blur-md border border-gray-100 dark:border-gray-800 rounded-[2rem] p-8 md:p-12 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.08)] transition-all duration-500">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 text-center divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-gray-800">
+                
+                <div class="flex flex-col items-center py-6 md:py-0 group">
+                    <div class="relative mb-2">
+                        <span class="text-6xl md:text-7xl font-[300] text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-500 tracking-tighter">
+                            3
+                        </span>
+                        <span class="text-[#5D3FD3] dark:text-purple-400 text-4xl md:text-5xl font-light absolute -right-6 top-0 animate-pulse">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors mt-2">Projects Built</p>
+                </div>
+
+                <div class="flex flex-col items-center py-6 md:py-0 group">
+                    <div class="relative mb-2">
+                        <span class="text-6xl md:text-7xl font-[300] text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-500 tracking-tighter">
+                            10
+                        </span>
+                        <span class="text-[#5D3FD3] dark:text-purple-400 text-4xl md:text-5xl font-light absolute -right-6 top-0 animate-pulse">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors mt-2">Technologies</p>
+                </div>
+
+                <div class="flex flex-col items-center py-6 md:py-0 group">
+                    <div class="relative mb-2">
+                        <span class="text-6xl md:text-7xl font-[300] text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-500 tracking-tighter">
+                            1
+                        </span>
+                        <span class="text-[#5D3FD3] dark:text-purple-400 text-4xl md:text-5xl font-light absolute -right-6 top-0 animate-pulse">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors mt-2">Year Full Stack Training</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<section class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300" id="projects">
+    
+    <div class="absolute top-0 right-0 w-[50%] h-[60%] bg-[#5D3FD3] opacity-[0.03] dark:opacity-[0.06] blur-[150px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 left-0 w-[40%] h-[50%] bg-purple-500 opacity-[0.03] dark:opacity-[0.05] blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 mb-12 relative z-10">
+        <div class="text-center max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 border border-[#5D3FD3]/20 mb-6">
+                <span class="text-[#5D3FD3] dark:text-purple-300 text-[10px] font-bold uppercase tracking-widest">Our Portfolio</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-[300] text-gray-900 dark:text-white mb-4 transition-colors">Recent Projects</h2>
+            <p class="text-gray-500 dark:text-gray-400 font-light text-lg transition-colors">Swipe to explore our latest digital solutions.</p>
+        </div>
+    </div>
+
+    <div class="flex overflow-x-auto gap-8 px-4 md:px-12 pb-16 pt-4 snap-x snap-mandatory scroll-smooth hide-scrollbar relative z-10">
+        
+        <div class="min-w-[320px] md:min-w-[380px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2rem] shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] hover:border-[#5D3FD3]/30 transition-all duration-500 relative snap-center group flex flex-col p-2">
+            
+            <div class="h-[240px] w-full overflow-hidden rounded-[1.5rem] relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#5D3FD3]/90 via-[#5D3FD3]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
+                    <span class="text-white font-medium flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        Explore Project <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="PDF to Word" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700">
+                
+                <span class="absolute top-4 left-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur text-[#5D3FD3] dark:text-purple-400 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm z-20">Utility</span>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors duration-300">PDF to Word</h3>
+                    <span class="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-gray-100 dark:border-gray-700">FREE</span>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-light line-clamp-2 mb-6 transition-colors">Fast and secure tool to convert PDF documents into editable Word files without losing formatting.</p>
+                
+                <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">HTML/CSS</span>
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">Python</span>
+                </div>
+
+                <a href="#" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent text-gray-700 dark:text-gray-300 font-medium group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:to-[#5D3FD3] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.25)] transition-all duration-300">
+                    <span>Launch App</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="min-w-[320px] md:min-w-[380px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2rem] shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] hover:border-[#5D3FD3]/30 transition-all duration-500 relative snap-center group flex flex-col p-2">
+            
+            <div class="h-[240px] w-full overflow-hidden rounded-[1.5rem] relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#5D3FD3]/90 via-[#5D3FD3]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
+                    <span class="text-white font-medium flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        Explore Project <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-Commerce Store" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700">
+                
+                <span class="absolute top-4 left-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur text-[#5D3FD3] dark:text-purple-400 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm z-20">E-Commerce</span>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors duration-300">Shopify Store</h3>
+                    <span class="bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 text-[#5D3FD3] dark:text-purple-400 text-[10px] font-bold px-2.5 py-1 rounded-md">LIVE</span>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-light line-clamp-2 mb-6 transition-colors">A complete custom theme development for a modern e-commerce retail business.</p>
+                
+                <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">Shopify</span>
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">Tailwind</span>
+                </div>
+
+                <a href="#" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent text-gray-700 dark:text-gray-300 font-medium group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:to-[#5D3FD3] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.25)] transition-all duration-300">
+                    <span>Visit Website</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="min-w-[320px] md:min-w-[380px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2rem] shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] hover:border-[#5D3FD3]/30 transition-all duration-500 relative snap-center group flex flex-col p-2">
+            
+            <div class="h-[240px] w-full overflow-hidden rounded-[1.5rem] relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#5D3FD3]/90 via-[#5D3FD3]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
+                    <span class="text-white font-medium flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        Explore Project <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dashboard" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700">
+                
+                <span class="absolute top-4 left-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur text-[#5D3FD3] dark:text-purple-400 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm z-20">SaaS</span>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#5D3FD3] dark:group-hover:text-purple-400 transition-colors duration-300">Data Analytics</h3>
+                    <span class="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-gray-100 dark:border-gray-700">BETA</span>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-light line-clamp-2 mb-6 transition-colors">Real-time data visualization dashboard with user authentication and reporting.</p>
+                
+                <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">React.js</span>
+                    <span class="text-[10px] font-medium bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 text-[#5D3FD3] dark:text-purple-300 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">Firebase</span>
+                </div>
+                
+                <a href="#" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent text-gray-700 dark:text-gray-300 font-medium group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:to-[#5D3FD3] group-hover:border-transparent group-hover:text-white group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.25)] transition-all duration-300">
+                    <span>View App</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="min-w-[20px] md:min-w-[40px]"></div>
+    </div>
+</section>
+
+<section class="py-24 bg-white dark:bg-gray-900 border-t border-gray-50 dark:border-gray-800 relative overflow-hidden transition-colors duration-300" id="upcoming-projects">
+    
+    <div class="absolute top-1/4 right-0 w-[40%] h-[50%] bg-[#5D3FD3] opacity-[0.03] dark:opacity-[0.05] blur-[150px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 left-0 w-[30%] h-[40%] bg-purple-500 opacity-[0.03] dark:opacity-[0.05] blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 border border-[#5D3FD3]/20 mb-6">
+                <span class="text-[#5D3FD3] dark:text-purple-300 text-[10px] font-bold uppercase tracking-widest">What's Next</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-[300] text-gray-900 dark:text-white mb-4 transition-colors">Upcoming Projects</h2>
+            <p class="text-gray-500 dark:text-gray-400 font-light text-lg transition-colors italic">Here are some exciting projects I am planning to build in the near future.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2 flex flex-col">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-bus text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">Smart Bus Transit</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10 flex-grow">A comprehensive transit guide featuring route details, live timings, and seamless ticket booking for local and intercity buses.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10 flex justify-between items-center mt-auto">
+                    <span class="text-xs font-medium text-gray-400 dark:text-gray-500">Status</span>
+                    <div class="flex items-center gap-2 bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">
+                        <i class="fa-solid fa-spinner fa-spin text-[#5D3FD3] dark:text-purple-400 text-[10px]"></i>
+                        <span class="text-[10px] font-bold text-[#5D3FD3] dark:text-purple-300 uppercase tracking-widest">In Development</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2 flex flex-col">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-burger text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">Food Delivery App</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10 flex-grow">A dedicated application for restaurants featuring a smooth ordering system, live order tracking, and secure checkout.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10 flex justify-between items-center mt-auto">
+                    <span class="text-xs font-medium text-gray-400 dark:text-gray-500">Status</span>
+                    <div class="flex items-center gap-2 bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">
+                        <i class="fa-solid fa-compass fa-spin-pulse text-[#5D3FD3] dark:text-purple-400 text-[10px]"></i>
+                        <span class="text-[10px] font-bold text-[#5D3FD3] dark:text-purple-300 uppercase tracking-widest">Planning Phase</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-[0_15px_40px_rgba(93,63,211,0.12)] transition-all duration-500 relative z-10 overflow-hidden transform hover:-translate-y-2 flex flex-col">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-[#5D3FD3]/10 to-purple-500/10 dark:from-[#5D3FD3]/20 dark:to-purple-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#5D3FD3] group-hover:to-[#8B5CF6] transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)]">
+                    <i class="fa-solid fa-store text-3xl text-[#5D3FD3] dark:text-purple-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#5D3FD3] group-hover:to-purple-500 transition-all duration-300">E-Commerce Hub</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-light mb-8 transition-colors relative z-10 flex-grow">A unified digital marketplace bridging the gap between large shopping malls, local small vendors, and customers.</p>
+                
+                <div class="pt-6 border-t border-gray-100 dark:border-gray-800 transition-colors relative z-10 flex justify-between items-center mt-auto">
+                    <span class="text-xs font-medium text-gray-400 dark:text-gray-500">Status</span>
+                    <div class="flex items-center gap-2 bg-[#5D3FD3]/5 dark:bg-[#5D3FD3]/10 px-3 py-1.5 rounded-full border border-[#5D3FD3]/10">
+                        <i class="fa-solid fa-pen-nib fa-bounce text-[#5D3FD3] dark:text-purple-400 text-[10px]"></i>
+                        <span class="text-[10px] font-bold text-[#5D3FD3] dark:text-purple-300 uppercase tracking-widest">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300" id="pricing">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-[#5D3FD3] opacity-[0.04] dark:opacity-[0.06] blur-[150px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 border border-[#5D3FD3]/20 mb-6">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5D3FD3] opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-[#5D3FD3]"></span>
+                </span>
+                <span class="text-[#5D3FD3] dark:text-purple-300 text-[10px] font-bold uppercase tracking-widest">Early Bird Offer</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-[300] text-gray-900 dark:text-white mb-4 transition-colors">Choose Your Plan</h2>
+            <p class="text-gray-500 dark:text-gray-400 font-light text-lg transition-colors">Premium digital solutions at beginner-friendly prices.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+            
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-xl transition-all duration-300 relative z-10 overflow-hidden">
+                
+                <span class="absolute top-0 left-0 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-[10px] font-bold px-4 py-2 rounded-br-2xl z-20">50% OFF</span>
+
+                <div class="flex justify-center items-center mb-6 relative z-10 pt-2">
+                    <span class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest group-hover:bg-[#5D3FD3]/10 group-hover:text-[#5D3FD3] transition-colors">Basic Plan</span>
+                </div>
+                
+                <div class="text-center mb-8 relative z-10">
+                    <div class="text-sm text-gray-400 dark:text-gray-500 line-through decoration-gray-400/50 mb-1">₹9,999</div>
+                    <div class="flex items-end justify-center gap-1">
+                        <span class="text-xl text-gray-400 font-medium mb-1">₹</span>
+                        <span class="text-5xl font-bold text-gray-900 dark:text-white tracking-tight">4,999</span>
+                        <span class="text-gray-400 dark:text-gray-500 text-sm font-medium mb-1.5">/start</span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-4 mb-10 text-sm text-gray-600 dark:text-gray-300 font-medium px-4 relative z-10">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Up to 5 Pages (Static)</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Mobile Responsive Design</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Basic SEO Setup</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Contact Form Integration</li>
+                </ul>
+                
+                <button class="w-full py-4 px-4 rounded-2xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold group-hover:bg-[#5D3FD3]/10 group-hover:text-[#5D3FD3] transition-all duration-300 relative z-10">
+                    Get Started
+                </button>
+            </div>
+
+            <div class="group relative bg-white dark:bg-gray-900 rounded-[2rem] p-8 md:p-10 border-2 border-[#5D3FD3] shadow-[0_15px_40px_rgba(93,63,211,0.15)] transform md:-translate-y-4 transition-all duration-300 z-20 overflow-hidden">
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-[#5D3FD3]/5 to-transparent pointer-events-none"></div>
+
+                <span class="absolute top-0 left-0 bg-gradient-to-r from-[#5D3FD3] to-purple-500 text-white text-[10px] font-bold px-4 py-2 rounded-br-2xl shadow-md animate-pulse z-20">SAVE ₹10,000</span>
+
+                <div class="flex justify-center items-center mb-6 relative z-10 pt-2">
+                    <span class="bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 text-[#5D3FD3] dark:text-purple-400 text-xs font-bold px-5 py-2 rounded-full uppercase tracking-widest border border-[#5D3FD3]/20">Pro Plan</span>
+                </div>
+                
+                <div class="text-center mb-8 relative z-10">
+                    <div class="text-sm text-gray-400 dark:text-gray-500 line-through decoration-[#5D3FD3]/50 mb-1">₹24,999</div>
+                    <div class="flex items-end justify-center gap-1">
+                        <span class="text-2xl text-gray-900 dark:text-white font-medium mb-1">₹</span>
+                        <span class="text-6xl font-bold text-gray-900 dark:text-white tracking-tighter">14,999</span>
+                        <span class="text-gray-400 dark:text-gray-500 text-sm font-medium mb-2">/start</span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-4 mb-10 text-sm text-gray-800 dark:text-gray-200 font-medium px-4 relative z-10">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg drop-shadow-sm"></i> Full-Stack App (React/Node)</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg drop-shadow-sm"></i> Custom Admin Dashboard</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg drop-shadow-sm"></i> Payment Gateway Integration</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg drop-shadow-sm"></i> Database Management</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg drop-shadow-sm"></i> 3 Months Free Support</li>
+                </ul>
+                
+                <button class="w-full relative py-4 px-4 rounded-2xl bg-gradient-to-r from-[#8B5CF6] to-[#5D3FD3] text-white font-bold text-lg shadow-[0_8px_20px_rgba(93,63,211,0.3)] hover:shadow-[0_12px_25px_rgba(93,63,211,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden group/btn z-10">
+                    <span class="relative z-10">Get Started</span>
+                    <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover/btn:animate-[shimmer_1.5s_infinite] z-0"></div>
+                </button>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-900 rounded-[2rem] p-8 border border-gray-100 dark:border-gray-800 hover:border-[#5D3FD3]/40 shadow-sm hover:shadow-xl transition-all duration-300 relative z-10 overflow-hidden">
+                
+                <span class="absolute top-0 left-0 bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 text-[#5D3FD3] dark:text-purple-400 text-[10px] font-bold px-4 py-2 rounded-br-2xl z-20">FREE CHAT</span>
+
+                <div class="flex justify-center items-center mb-6 relative z-10 pt-2">
+                    <span class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest group-hover:bg-[#5D3FD3]/10 group-hover:text-[#5D3FD3] transition-colors">Custom Plan</span>
+                </div>
+                
+                <div class="text-center mb-8 relative z-10">
+                    <div class="h-[20px] mb-1"></div> <div class="flex items-end justify-center gap-1">
+                        <span class="text-4xl font-bold text-gray-900 dark:text-white tracking-tight mt-1 mb-1">Let's Talk</span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-4 mb-10 text-sm text-gray-600 dark:text-gray-300 font-medium px-4 relative z-10">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Complex Business Logic</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Scalable Cloud Architecture</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Third-party Integrations</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-green-500 text-lg"></i> Advanced Security Setup</li>
+                </ul>
+                
+                <button class="w-full py-4 px-4 rounded-2xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold group-hover:bg-[#5D3FD3]/10 group-hover:text-[#5D3FD3] transition-all duration-300 relative z-10">
+                    Contact Us
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes shimmer {
+        100% { transform: translateX(100%); }
+    }
+</style>
+<section class="py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300" id="contact">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[500px] bg-gradient-to-tr from-[#5D3FD3] to-[#8B5CF6] opacity-20 dark:opacity-30 blur-[100px] rounded-full pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center">
+        
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-[300] text-gray-900 dark:text-white mb-3 transition-colors">Get In Touch</h2>
+            <p class="text-gray-500 dark:text-gray-400 font-light text-sm md:text-base">Let's create something amazing together.</p>
+        </div>
+
+        <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-[2.5rem] shadow-[0_20px_40px_-15px_rgba(93,63,211,0.15)] dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] border border-gray-100 dark:border-gray-700 p-8 sm:p-10 relative overflow-hidden transition-all duration-300 group">
+            
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#8B5CF6] to-[#5D3FD3]"></div>
+
+            <div class="w-14 h-14 mx-auto bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-1 transition-transform duration-300">
+                <i class="fa-regular fa-paper-plane text-2xl text-[#5D3FD3] dark:text-purple-400"></i>
+            </div>
+
+            <form action="#" method="POST" class="space-y-5">
+                
+                <div class="space-y-1.5">
+                    <label for="name" class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" class="w-full px-4 py-3.5 rounded-xl text-sm bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:border-[#5D3FD3] focus:ring-1 focus:ring-[#5D3FD3] transition-all placeholder-gray-400 dark:placeholder-gray-500" required>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="email" class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Email</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" class="w-full px-4 py-3.5 rounded-xl text-sm bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:border-[#5D3FD3] focus:ring-1 focus:ring-[#5D3FD3] transition-all placeholder-gray-400 dark:placeholder-gray-500" required>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="message" class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="How can I help you?" class="w-full px-4 py-3.5 rounded-xl text-sm bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:border-[#5D3FD3] focus:ring-1 focus:ring-[#5D3FD3] transition-all placeholder-gray-400 dark:placeholder-gray-500 resize-none" required></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 mt-2 rounded-xl bg-gradient-to-r from-[#8B5CF6] to-[#5D3FD3] text-white font-semibold text-sm hover:shadow-[0_8px_20px_rgba(93,63,211,0.3)] transform hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300">
+                    Send Message
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-center">
+                <p class="text-xs text-gray-500 dark:text-gray-400">Prefer direct email?</p>
+                <a href="mailto:hello@evstechnology.com" class="text-sm font-medium text-[#5D3FD3] dark:text-purple-400 hover:underline mt-1 inline-block">hello@evstechnology.com</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300" id="about">
+    
+    <div class="absolute top-0 left-0 w-[40%] h-[50%] bg-[#5D3FD3] opacity-[0.02] dark:opacity-[0.04] blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        
+        <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 max-w-7xl mx-auto">
+            
+            <div class="w-full lg:w-5/12 relative">
+                <div class="relative z-10 bg-gray-50 dark:bg-gray-800/50 rounded-[2.5rem] p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+                    <div class="w-16 h-16 bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 rounded-2xl flex items-center justify-center mb-8">
+    <i class="fa-solid fa-asterisk text-3xl text-[#5D3FD3] dark:text-purple-400 animate-[spin_4s_linear_infinite]"></i>
+</div>
+
+
+
+
+                    <h3 class="text-3xl font-[300] text-gray-900 dark:text-white mb-6 leading-snug">
+                        Driven by <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#5D3FD3] to-purple-500">Curiosity.</span><br>
+                        Built with Passion.
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-gray-900 border border-gray-50 dark:border-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-none transition-transform hover:-translate-y-1 duration-300">
+                            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">The Beginning</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">Botany to Binary (Started 2021)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-gray-900 border border-gray-50 dark:border-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-none transition-transform hover:-translate-y-1 duration-300">
+                            <div class="w-10 h-10 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 flex items-center justify-center text-[#5D3FD3] dark:text-purple-400">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">The Path</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">Proudly Self-Taught Freelancer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-[radial-gradient(#5D3FD3_2px,transparent_2px)] [background-size:12px_12px] opacity-20 dark:opacity-30 -z-10"></div>
+            </div>
+
+            <div class="w-full lg:w-7/12">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#5D3FD3]/10 dark:bg-[#5D3FD3]/20 border border-[#5D3FD3]/20 mb-6">
+                    <span class="text-[#5D3FD3] dark:text-purple-300 text-[10px] font-bold uppercase tracking-widest">My Story</span>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl font-[300] text-gray-900 dark:text-white mb-8 transition-colors">
+                    I don't just write code, <br class="hidden md:block" />
+                    I <span class="font-[500] text-[#5D3FD3] dark:text-purple-400">build solutions.</span>
+                </h2>
+
+                <div class="space-y-6 text-gray-500 dark:text-gray-400 font-light text-lg leading-relaxed">
+                    <p>
+                        My journey into the world of tech isn't a traditional one. Back in 2021, while pursuing a degree in Botany, I discovered a profound passion for coding during my free time. What started as sheer curiosity—tinkering with web structures without a formal guide—quickly evolved into a relentless drive to create.
+                    </p>
+                    <p>
+                        I am a proud <strong class="text-gray-900 dark:text-gray-200 font-medium">self-taught freelancer</strong>. I didn't have a structured roadmap, but I had the persistence to debug, learn, and grow. From mastering intuitive UI/UX designs and modern front-end frameworks to currently expanding my skills into Python, my entire skill set is fueled purely by the love for the craft.
+                    </p>
+                    <p>
+                        I believe that the best way to learn is by doing. That's why I focus on building real-world applications that solve actual problems. Whether you need a simple landing page or a complex digital solution, I bring dedication, self-driven expertise, and a unique perspective to every project.
+                    </p>
+                </div>
+
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="#contact" class="py-3.5 px-8 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium text-sm hover:bg-[#5D3FD3] dark:hover:bg-purple-400 hover:text-white transition-colors duration-300">
+                        Let's Talk
+                    </a>
+                    <a href="#projects" class="py-3.5 px-8 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-medium text-sm border border-gray-200 dark:border-gray-700 hover:border-[#5D3FD3] dark:hover:border-purple-400 transition-colors duration-300">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 pt-16 pb-8 transition-colors duration-300 relative overflow-hidden">
+    
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[200px] bg-[#5D3FD3] opacity-[0.02] dark:opacity-[0.05] blur-[100px] pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            
+            <div class="col-span-1 md:col-span-1">
+                <a href="#" class="flex items-center gap-2 mb-6 group">
+                    <span class="text-3xl font-[200] tracking-tighter text-gray-900 dark:text-white transition-colors">
+                        EVS 
+                        <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#5D3FD3] to-purple-500">
+                            Technology
+                        </span>
+                    </span>
+                </a>
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-light leading-relaxed transition-colors">
+                    Building the future with smart, affordable, and future-ready digital solutions. Let's innovate together.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-widest mb-6 transition-colors">Company</h4>
+                <ul class="space-y-4 text-sm font-light text-gray-500 dark:text-gray-400">
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Home</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">About Us</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Services</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-widest mb-6 transition-colors">Services</h4>
+                <ul class="space-y-4 text-sm font-light text-gray-500 dark:text-gray-400">
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Web Development</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Mobile Applications</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">Software Solutions</a></li>
+                    <li><a href="#" class="inline-block hover:text-[#5D3FD3] dark:hover:text-purple-400 hover:translate-x-1 transition-all duration-300">UI/UX Design</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-widest mb-6 transition-colors">Connect With Us</h4>
+                <div class="flex gap-4 mb-6">
+                    <a href="#" class="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-gradient-to-tr hover:from-[#5D3FD3] hover:to-purple-500 hover:text-white hover:border-transparent hover:shadow-[0_4px_15px_rgba(93,63,211,0.4)] transition-all duration-300 group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-gradient-to-tr hover:from-[#5D3FD3] hover:to-purple-500 hover:text-white hover:border-transparent hover:shadow-[0_4px_15px_rgba(93,63,211,0.4)] transition-all duration-300 group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.849-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849s.012-3.584.07-4.849c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.351-.2 6.78-2.618 6.98-6.98.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.353-2.612-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-gradient-to-tr hover:from-[#5D3FD3] hover:to-purple-500 hover:text-white hover:border-transparent hover:shadow-[0_4px_15px_rgba(93,63,211,0.4)] transition-all duration-300 group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    </a>
+                </div>
+                <p class="text-xs text-gray-400 dark:text-gray-500 font-light italic transition-colors">Follow us for tech updates & news.</p>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-100 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 transition-colors">
+            <p class="text-[12px] text-gray-400 dark:text-gray-500 font-light tracking-wide transition-colors">&copy; 2026 EVS Technology. All rights reserved.</p>
+            <div class="flex gap-6 text-[12px] text-gray-400 dark:text-gray-500 font-light">
+                <a href="#" class="hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-[#5D3FD3] dark:hover:text-purple-400 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 1. Mobile Menu Toggle Logic
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu-dropdown');
+
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // 2. Dark Mode Toggle Logic
+    const themeToggleDesktop = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const htmlElement = document.documentElement;
+
+    // Check localStorage or System Preferences on initial load
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+    } else {
+        htmlElement.classList.remove('dark');
+    }
+
+    // Toggle function
+    function toggleTheme() {
+        if (htmlElement.classList.contains('dark')) {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    }
+
+    // Add event listeners to both desktop and mobile theme buttons
+    if (themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
+    if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+</script>
+
+</body>
+</html>
