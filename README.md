@@ -5,7 +5,11 @@
 ### ⚡ Full Stack Developer Portfolio
 
 <p>
-  <strong><i class="fa-solid fa-code"></i> Clean Code • <i class="fa-solid fa-bolt"></i> Fast UI • <i class="fa-solid fa-rocket"></i> Real Projects</strong>
+  <strong>
+    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" width="18"> Clean Code • 
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="18"> Fast UI • 
+    <img src="https://cdn-icons-png.flaticon.com/512/3212/3212608.png" width="18"> Real Projects
+  </strong>
 </p>
 
 <p>
@@ -18,7 +22,7 @@
 
 ---
 
-## 🧠 <i class="fa-solid fa-user"></i> About This Project
+## 🧠 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="18"> About This Project
 
 This is my **personal developer portfolio** built to showcase:
 
@@ -30,16 +34,16 @@ This is my **personal developer portfolio** built to showcase:
 
 ---
 
-## 🔥 <i class="fa-solid fa-fire"></i> What Makes This Different?
+## 🔥 <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" width="18"> What Makes This Different?
 
-- ⚡ <i class="fa-solid fa-gauge-high"></i> No heavy frameworks → **Blazing fast**
-- 🎯 <i class="fa-solid fa-bullseye"></i> Focused UI → No clutter
-- 📱 <i class="fa-solid fa-mobile-screen"></i> Fully responsive
-- 🌓 <i class="fa-solid fa-moon"></i> Smart theme toggle
+- ⚡ <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="16"> No heavy frameworks → **Blazing fast**
+- 🎯 <img src="https://cdn-icons-png.flaticon.com/512/1828/1828886.png" width="16"> Focused UI → No clutter
+- 📱 <img src="https://cdn-icons-png.flaticon.com/512/545/545245.png" width="16"> Fully responsive
+- 🌓 <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" width="16"> Smart theme toggle
 
 ---
 
-## 🛠 <i class="fa-solid fa-screwdriver-wrench"></i> Tech Stack
+## 🛠 <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" width="18"> Tech Stack
 
 | Category | Tech |
 |--------|------|
@@ -51,7 +55,7 @@ This is my **personal developer portfolio** built to showcase:
 
 ---
 
-## 🎯 <i class="fa-solid fa-list-check"></i> Features
+## 🎯 <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" width="18"> Features
 
 ### 🎨 UI / UX
 - ✨ Glassmorphism design  
@@ -69,7 +73,7 @@ This is my **personal developer portfolio** built to showcase:
 
 ---
 
-## ⚡ <i class="fa-solid fa-bolt"></i> Performance Focus
+## ⚡ <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="18"> Performance Focus
 
 - 🚫 No build tools  
 - 🚫 No frameworks  
@@ -80,7 +84,7 @@ This is my **personal developer portfolio** built to showcase:
 
 ---
 
-## 🗺 <i class="fa-solid fa-road"></i> Roadmap
+## 🗺 <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" width="18"> Roadmap
 
 - [x] 🎨 UI Design  
 - [x] 📱 Responsive Layout  
@@ -92,84 +96,4 @@ This is my **personal developer portfolio** built to showcase:
 
 ---
 
-## 📂 <i class="fa-solid fa-folder"></i> Project Structure    <a href="https://html.com/"><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"></a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"></a>
-  </p>
-</div>
-
-<br>
-
-> Welcome to the official repository for **EVS Technology**, the personal portfolio website of **EV Sanjeevan**. This project is a highly optimized, responsive, and modern single-page portfolio designed to showcase my skills as a Full-Stack Developer, my latest projects, and my professional journey.
-
----
-
-## 📑 Table of Contents
-- [🌍 Live Demo](#-live-demo)
-- [✨ Key Features](#-key-features)
-- [⚡ Performance & Architecture](#-performance--architecture)
-- [🛠️ Technologies Used](#️-technologies-used)
-- [🗺️ Roadmap](#️-roadmap)
-- [📂 Project Structure](#-project-structure)
-- [🚀 How to Run Locally](#-how-to-run-locally)
-- [📬 Connect With Me](#-connect-with-me)
-
----
-
-## 🌍 Live Demo
-
-Experience the live website here: 👉 **[EVS Technology Portfolio](https://evanjeevan07.github.io/Myportolio/)**
-
----
-
-## ✨ Key Features
-
-* **💎 Premium Modern UI:** Designed with a custom purple gradient theme (`#5D3FD3` & `#8B5CF6`), advanced glassmorphism elements, and smooth hover micro-interactions.
-* **🌓 Seamless Theme Toggle:** Fully integrated Dark & Light mode that automatically syncs with user system preferences or allows manual switching with a single click.
-* **📱 100% Responsive Design:** Flawless, mobile-first viewing experience across mobile, tablet, and ultra-wide desktop screens.
-* **📬 Integrated Contact System:** Features a functional contact form powered by **FormSubmit** to send messages directly to email without requiring a backend server.
-* **💼 Interactive Showcase:** Beautifully structured cards to display recent works, tech stacks, and future development plans.
-
----
-
-## ⚡ Performance & Architecture
-
-This portfolio is built with speed and accessibility in mind. By avoiding heavy JavaScript frameworks for a purely static site, it achieves lightning-fast load times.
-
-- **Zero-Build Step:** Uses Tailwind CSS via CDN for instant local development.
-- **Optimized Assets:** Uses lightweight SVG icons (FontAwesome) and clean DOM structure.
-- **Smooth UX:** Implements CSS scroll-behavior for seamless section navigation.
-
----
-
-## 🛠️ Technologies Used
-
-### Frontend & UI
-* **HTML5** - Semantic markup structure
-* **Tailwind CSS** - Utility-first styling & responsive layouts
-* **Vanilla JavaScript** - DOM manipulation, theme toggling, and interactive menus
-
-### Tools & Integration
-* **Font Awesome (v6.4.0)** - High-quality vector icons
-* **Google Fonts (Montserrat)** - Clean, modern typography
-* **FormSubmit API** - Secure, backend-free form submissions
-
----
-
-## 🗺️ Roadmap
-
-- [x] Initial UI Design & Development
-- [x] Responsive layout optimization (Mobile/Tablet/Desktop)
-- [x] Dark/Light Mode Implementation
-- [x] Contact Form Integration
-- [ ] Add Page Loading Animations
-- [ ] Implement a dynamic blog/article section
-- [ ] Add multi-language support (English / Tamil)
-
----
-
-## 📂 Project Structure
-
-```text
-📦 Myportolio
- ┣ 📜 index.html       # The main portfolio page (contains HTML, Tailwind config, and custom CSS)
- ┗ 📜 README.md        # Project documentation & guidelines
+## 📂 <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" width="18"> Project Structure
