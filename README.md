@@ -1,19 +1,98 @@
 <div align="center">
-  <img src="https://via.placeholder.com/1000x300/5D3FD3/FFFFFF?text=EVS+Technology+-+Full+Stack+Developer" alt="EVS Technology Banner" width="100%" border-radius="15px">
 
-  <h1>🚀 EVS Technology | Personal Portfolio</h1>
-  
-  <p><strong>Building robust, scalable, and intuitive web applications.</strong></p>
+# 🚀 EVS Technology
 
-  <p>
-    <a href="https://evanjeevan07.github.io/Myportolio/"><img src="https://img.shields.io/badge/Status-Live_Now-success?style=for-the-badge&logo=vercel" alt="Live Status"></a>
-    <img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?style=for-the-badge" alt="Maintained">
-    <img src="https://img.shields.io/github/last-commit/evanjeevan07/Myportolio?style=for-the-badge&color=8B5CF6" alt="Last Commit">
-  </p>
+### ⚡ Full Stack Developer Portfolio
 
-  <p>
-    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"></a>
-    <a href="https://html.com/"><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"></a>
+<p>
+  <strong><i class="fa-solid fa-code"></i> Clean Code • <i class="fa-solid fa-bolt"></i> Fast UI • <i class="fa-solid fa-rocket"></i> Real Projects</strong>
+</p>
+
+<p>
+  <a href="https://evanjeevan07.github.io/Myportolio/">
+    <img src="https://img.shields.io/badge/🌍 Live Demo-Visit Now-5D3FD3?style=for-the-badge">
+  </a>
+</p>
+
+</div>
+
+---
+
+## 🧠 <i class="fa-solid fa-user"></i> About This Project
+
+This is my **personal developer portfolio** built to showcase:
+
+- 💼 Real-world projects  
+- 🧠 Technical skills  
+- 🚀 Growth as a Full Stack Developer  
+
+👉 Built with focus on **performance, simplicity, and clean UI**
+
+---
+
+## 🔥 <i class="fa-solid fa-fire"></i> What Makes This Different?
+
+- ⚡ <i class="fa-solid fa-gauge-high"></i> No heavy frameworks → **Blazing fast**
+- 🎯 <i class="fa-solid fa-bullseye"></i> Focused UI → No clutter
+- 📱 <i class="fa-solid fa-mobile-screen"></i> Fully responsive
+- 🌓 <i class="fa-solid fa-moon"></i> Smart theme toggle
+
+---
+
+## 🛠 <i class="fa-solid fa-screwdriver-wrench"></i> Tech Stack
+
+| Category | Tech |
+|--------|------|
+| 🧱 Structure | HTML5 |
+| 🎨 Styling | Tailwind CSS |
+| ⚙️ Logic | JavaScript |
+| ⭐ Icons | Font Awesome |
+| 📬 Forms | FormSubmit |
+
+---
+
+## 🎯 <i class="fa-solid fa-list-check"></i> Features
+
+### 🎨 UI / UX
+- ✨ Glassmorphism design  
+- 🎬 Smooth hover effects  
+- 🌈 Gradient theme  
+
+### 📱 Responsive
+- ✅ Mobile  
+- ✅ Tablet  
+- ✅ Desktop  
+
+### 📬 Contact System
+- 📩 Direct email (no backend)  
+- 🔒 Secure submission  
+
+---
+
+## ⚡ <i class="fa-solid fa-bolt"></i> Performance Focus
+
+- 🚫 No build tools  
+- 🚫 No frameworks  
+- ✅ Lightweight assets  
+- ✅ Fast load time  
+
+👉 Result: **Instant loading experience**
+
+---
+
+## 🗺 <i class="fa-solid fa-road"></i> Roadmap
+
+- [x] 🎨 UI Design  
+- [x] 📱 Responsive Layout  
+- [x] 🌓 Dark Mode  
+- [x] 📬 Contact Form  
+- [ ] 🎬 Animations  
+- [ ] 📝 Blog System  
+- [ ] 🌐 Multi-language (EN + தமிழ்)
+
+---
+
+## 📂 <i class="fa-solid fa-folder"></i> Project Structure    <a href="https://html.com/"><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"></a>
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"></a>
   </p>
 </div>
